@@ -31,6 +31,8 @@
 #   2134 Monday, 24 Nisan 5779 (29 April 2019) [EDT] {18015}
 #   2347 Tuesday, 25 Nisan 5779 (30 April 2019) [EDT] {18016}
 #   0014 Wednesday, 26 Nisan 5779 (1 May 2019) [EDT] {18017}
+#   0320 Thursday, 3 Sivan 5779 (6 June 2019) [EDT] {18053}
+#   0153 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
 #
 # Austin Kim
 ###############################################################################
@@ -739,9 +741,9 @@ x ( ) {
      then if [[ "$1" ]]
              then FILE="$1"
              elif [[ -f "$FILE" ]]
-                  then echo xed "$FILE"
+                  then echo xed -x "$FILE"
              elif [[ -z "$FILE" ]]
-                  then read FILE?'xed '
+                  then read FILE?'xed -xc '
           fi
           if [[ ! -f "$FILE" ]]
              then for i in $EXTENSIONS
@@ -751,7 +753,7 @@ x ( ) {
                          fi
                   done
                   if [[ $STOP ]]
-                     then echo xed "$FILE"
+                     then echo xed -x "$FILE"
                   fi
           fi
           export FILE
@@ -759,7 +761,10 @@ x ( ) {
              then $EDITOR "$FILE"
              else X=`which xed`
                   if [[ "$X" ]]
-                     then xed "$FILE"
+                     then if [[ -f "$FILE" ]]
+                             then xed -x "$FILE"
+                             else xed -xc "$FILE"
+                          fi
                      else echo 'xed:  Command not found.'
                   fi
                   unset X
@@ -937,7 +942,8 @@ alias chrome='Google\ Chrome'
 
 # Print machine's IP address.
 IP=`ifconfig |grep broadcast`
-echo ${IP%netmask*}
+echo `timedate`:${IP%netmask*} >>~/ip.txt
+tail ~/ip.txt
 
 # Delete _~/.DS_Store_.
 if [[ -f ~/.DS_Store ]]
