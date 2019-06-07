@@ -32,7 +32,7 @@
 #   2347 Tuesday, 25 Nisan 5779 (30 April 2019) [EDT] {18016}
 #   0014 Wednesday, 26 Nisan 5779 (1 May 2019) [EDT] {18017}
 #   0320 Thursday, 3 Sivan 5779 (6 June 2019) [EDT] {18053}
-#   0221 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
+#   0225 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
 #
 # Austin Kim
 ###############################################################################
@@ -944,11 +944,11 @@ alias chrome='Google\ Chrome'
 
 # Print machine's IP address.
 IP=`ifconfig |grep broadcast`
-if [[ -f ip.txt ]]
-   then mv ip{,-new}.txt
+if [[ -f ~/ip.txt ]]
+   then mv ~/ip{,-new}.txt
         echo `timedate`:${IP%netmask*} >>~/ip-new.txt
-        uniq ip{-new,}.txt
-        rm ip-new.txt
+        uniq ~/ip{-new,}.txt
+        rm ~/ip-new.txt
         tail ~/ip.txt
 fi
 
