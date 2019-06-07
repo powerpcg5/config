@@ -32,7 +32,7 @@
 #   2347 Tuesday, 25 Nisan 5779 (30 April 2019) [EDT] {18016}
 #   0014 Wednesday, 26 Nisan 5779 (1 May 2019) [EDT] {18017}
 #   0320 Thursday, 3 Sivan 5779 (6 June 2019) [EDT] {18053}
-#   0153 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
+#   0221 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
 #
 # Austin Kim
 ###############################################################################
@@ -792,6 +792,7 @@ z ( ) {
   fi
   if [[ -w "$FILE" ]]
      then export FILE
+          xattr -cv "$FILE"
           if [[ -d "$PHYSHOME/.${PHYSPWD#$PHYSHOME/}" ]]
              then Y=..
                   Z=${PHYSPWD%/*}
@@ -867,6 +868,7 @@ z ( ) {
   fi
   if [[ -w "$FILF" ]]
      then export FILF
+          xattr -cv "$FILF"
           if [[ -d "$PHYSHOME/.${PHYSPWD#$PHYSHOME/}" ]]
              then Y=..
                   Z=${PHYSPWD%/*}
@@ -942,8 +944,13 @@ alias chrome='Google\ Chrome'
 
 # Print machine's IP address.
 IP=`ifconfig |grep broadcast`
-echo `timedate`:${IP%netmask*} >>~/ip.txt
-tail ~/ip.txt
+if [[ -f ip.txt ]]
+   then mv ip{,-new}.txt
+        echo `timedate`:${IP%netmask*} >>~/ip-new.txt
+        uniq ip{-new,}.txt
+        rm ip-new.txt
+        tail ~/ip.txt
+fi
 
 # Delete _~/.DS_Store_.
 if [[ -f ~/.DS_Store ]]
