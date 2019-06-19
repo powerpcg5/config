@@ -33,6 +33,7 @@
 #   0014 Wednesday, 26 Nisan 5779 (1 May 2019) [EDT] {18017}
 #   0320 Thursday, 3 Sivan 5779 (6 June 2019) [EDT] {18053}
 #   0225 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
+#   0131 Wednesday, 16 Sivan 5779 (19 June 2019) [EDT] {18066}
 #
 # Austin Kim
 ###############################################################################
@@ -131,7 +132,7 @@ cd .
 #   sftp:     `sftp $HOST'
 #   ssh:      `ssh $HOST'
 #   swap:     Swap FILE and FILF (and optionally set FILE)
-#   syn:      Check synchronization of primary and mirror (backup) directories
+#   syn:      `chmod -Rv a-w' primary & mirror dir's & `chmod -v a+w Drop\ Box'
 #   timedate: Print our standard time+date stamp
 #   v:        `vi $FILE'
 #   vim:      `mvim $FILE'
@@ -275,12 +276,12 @@ dq ( ) {
 
 # dqr:  `diff -qr' between all pairs of primary and mirror directories.
 dqr ( ) {
-  for i in *
+  date && for i in *
       do if [[ -d ".$i" ]]
             then echo diff -qr $i .$i
                       diff -qr "$i" ".$i"
          fi
-  done
+  done && date
   return
   }
 
@@ -627,19 +628,17 @@ swap ( ) {
   return
   }
 
-# syn:  Function to check synchronization of primary and mirror (backup)
-#   directories prior to doing your weekly backup.
+# syn:  Function to `chmod -Rv a-w' primary and mirror (backup) directories and
+#   to `chmod -v a+w Public/Drop\ Box' prior to doing your weekly backup.
 syn ( ) {
   cd ~
-  date && for i in *
-    do if [[ -d .$i ]]
-          then echo diff -r {,.}$i
-               if diff -r {,.}$i
-                  then chmod -Rv a-w {,.}$i
-               fi
-       fi
-    done
-  date
+  for i in *
+      do if [[ -d .$i ]]
+            then chmod -Rv a-w {,.}$i
+         fi
+  done
+  chmod -v a+w Public/Drop\ Box
+  ls Public/Drop\ Box
   return
   }
 
