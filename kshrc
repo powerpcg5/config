@@ -34,6 +34,7 @@
 #   0320 Thursday, 3 Sivan 5779 (6 June 2019) [EDT] {18053}
 #   0225 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
 #   0131 Wednesday, 16 Sivan 5779 (19 June 2019) [EDT] {18066}
+#   1118 Sunday, 20 Sivan 5779 (23 June 2019) [EDT] {18070}
 #
 # Austin Kim
 ###############################################################################
@@ -638,7 +639,7 @@ syn ( ) {
          fi
   done
   chmod -v a+w Public/Drop\ Box
-  ls Public/Drop\ Box
+  ls -d Public/Drop\ Box
   return
   }
 
