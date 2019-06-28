@@ -35,6 +35,7 @@
 #   0225 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
 #   0131 Wednesday, 16 Sivan 5779 (19 June 2019) [EDT] {18066}
 #   1118 Sunday, 20 Sivan 5779 (23 June 2019) [EDT] {18070}
+#   1741 Friday, 25 Sivan 5779 (28 June 2019) [EDT] {18075}
 #
 # Austin Kim
 ###############################################################################
@@ -142,7 +143,7 @@ cd .
 ###############################################################################
 
 # Extensions supported by all functions supporting automatic filename extension
-EXTENSIONS='1 f08 h c css csv js sql tex txt'
+EXTENSIONS='1 f08 h c css csv js md sql tex txt'
 export EXTENSIONS="$EXTENSIONS html xhtml xhtml.ru xhtml.he xhtml.ar xhtml.en"
 
 # c:  Function to `cd' to the mirror of the current directory.
