@@ -35,7 +35,7 @@
 #   0225 Friday, 4 Sivan 5779 (7 June 2019) [EDT] {18054}
 #   0131 Wednesday, 16 Sivan 5779 (19 June 2019) [EDT] {18066}
 #   1118 Sunday, 20 Sivan 5779 (23 June 2019) [EDT] {18070}
-#   1741 Friday, 25 Sivan 5779 (28 June 2019) [EDT] {18075}
+#   2009 Friday, 25 Sivan 5779 (28 June 2019) [EDT] {18075}
 #
 # Austin Kim
 ###############################################################################
@@ -85,7 +85,9 @@ alias ls='ls -GFla'
 
 # Alias to clean node_modules, package-lock.json, and package.json recursively
 CLEANALIAS='find . \( -name node_modules -prune -o -name package-lock.json'
-alias clean="$CLEANALIAS -o -name package.json \) -exec rm -rv {} +"
+# 2009 Friday, 25 Sivan 5779 (28 June 2019) [EDT] {18075}:  Keep package.json
+# alias clean="$CLEANALIAS -o -name package.json \) -exec rm -rv {} +"
+alias clean="$CLEANALIAS \) -exec rm -rv {} +"
 unset CLEANALIAS
 
 # Set your custom shell prompt.
